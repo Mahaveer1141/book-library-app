@@ -11,7 +11,6 @@ interface IProps {
 
 const Book: React.FC<IProps> = ({ book, changeFlag, flag }) => {
   const [wishListBooks, setWishListBooks] = useState<IBook[]>([]);
-  // const [flag, setFlag] = useState(false);
 
   useEffect(() => {
     const data: IBook[] = JSON.parse(localStorage.getItem("wishlist") || "[]");
@@ -31,7 +30,6 @@ const Book: React.FC<IProps> = ({ book, changeFlag, flag }) => {
     }
     localStorage.setItem("wishlist", JSON.stringify(updatedList));
     if (changeFlag) {
-      console.log("clicked", wishListBooks);
       changeFlag();
     }
   }

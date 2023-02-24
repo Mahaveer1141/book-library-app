@@ -8,27 +8,25 @@ import { IBook } from "../features/books/type";
 
 const BooksSearch: React.FC = () => {
   const [flag, setFlag] = useState(false);
-  const searchParamter = useSelector(
-    (state: RootState) => state.search.searchParameter
-  );
-
-  const [searchParams] = useSearchParams();
+  const [isLoading, setLoading] = useState(false);
 
   const categoryFilter = useSelector(
     (state: RootState) => state.filter.categories
   );
 
+  const [searchParams] = useSearchParams();
+  const searchParameter = searchParams.get("search") || "";
+
   const URL = filterUrl(
     "https://www.googleapis.com/books/v1/volumes?q=",
-    searchParams.get("search") || "",
+    searchParameter || "",
     categoryFilter
   );
-
-  console.log(URL);
 
   const [books, setBooks] = useState<IBook[]>();
 
   useEffect(() => {
+    setLoading(true);
     fetch(URL).then((response) =>
       response.json().then((data) => {
         if (data.error) {
@@ -36,11 +34,12 @@ const BooksSearch: React.FC = () => {
           return;
         }
         setBooks(data.items);
+        setLoading(false);
       })
     );
-  }, [categoryFilter]);
+  }, [searchParameter]);
 
-  if (!books) return <div>Loading ...</div>;
+  if (isLoading || !books) return <div>Loading ...</div>;
 
   return (
     <>
