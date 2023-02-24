@@ -1,0 +1,19 @@
+.book-container {
+  width: 230px;
+  height: 400px;
+}
+
+.book-list {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.books-scroll {
+  max-height: 76vh;
+  overflow-y: scroll;
+}
+
+.book-link {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}

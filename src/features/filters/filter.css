@@ -1,0 +1,7 @@
+.text-danger:hover {
+  cursor: pointer;
+}
+
+.form-select {
+  width: fit-content;
+}
