@@ -1,28 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../../../app/store";
-import { setToggleWishlist } from "../bookSlice";
-import { IBook } from "../type";
+import { setWishList } from "../bookSlice";
+import { BookType } from "../types";
 import { showBookTitle } from "../utils";
 
 interface IProps {
-  book: IBook;
+  book: BookType;
 }
 
 const Book: React.FC<IProps> = ({ book }) => {
-  const [wishListBooks, setWishListBooks] = useState<IBook[]>([]);
-
-  const wishListToggle = useSelector(
-    (state: RootState) => state.book.wishListToggle
-  );
+  const wishListBooks = useSelector((state: RootState) => state.books.wishList);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const data: IBook[] = JSON.parse(localStorage.getItem("wishlist") || "[]");
-    setWishListBooks(data);
-  }, [wishListToggle]);
 
   const containBook = wishListBooks.some(
     (wishListBook) => wishListBook.id === book.id
@@ -35,8 +26,7 @@ const Book: React.FC<IProps> = ({ book }) => {
     } else {
       updatedList = wishListBooks.filter((wb) => wb.id !== book.id);
     }
-    localStorage.setItem("wishlist", JSON.stringify(updatedList));
-    dispatch(setToggleWishlist());
+    dispatch(setWishList(updatedList));
   }
 
   return (

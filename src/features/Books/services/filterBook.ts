@@ -1,4 +1,4 @@
-import { IBook } from "../type";
+import { BookType } from "../types";
 
 interface FilterType {
   sortBy: {
@@ -27,7 +27,7 @@ function checkRating(bookRating: number, ratingRange: RatingRange): boolean {
   return result;
 }
 
-export function filterBooks(books: IBook[], filters: FilterType) {
+export function filterBooks(books: BookType[], filters: FilterType) {
   let ratingRange: RatingRange = [];
   if (filters.rating) {
     if (filters.rating.onetotwo) {

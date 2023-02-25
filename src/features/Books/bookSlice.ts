@@ -1,19 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { BookType } from "./types";
 
-const initialState = {
-  wishListToggle: false,
+interface IState {
+  wishList: BookType[];
+}
+
+const initialState: IState = {
+  wishList: [],
 };
 
 export const bookSlice = createSlice({
   name: "bookSlice",
   initialState,
   reducers: {
-    setToggleWishlist: (state) => {
-      state.wishListToggle = !state.wishListToggle;
+    setWishList: (state, { payload }) => {
+      state.wishList = payload;
     },
   },
 });
 
-export const { setToggleWishlist } = bookSlice.actions;
+export const { setWishList } = bookSlice.actions;
 
 export default bookSlice.reducer;

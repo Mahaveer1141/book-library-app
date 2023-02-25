@@ -1,17 +1,26 @@
 import { useState, useEffect } from "react";
 
-interface ResponseType {
+type ResponseType = {
   data: any;
   isLoading: boolean;
   error: Error | null;
-}
+};
 
-export function useFetch(URL: string, body?: any): ResponseType {
+type Options = {
+  dependacyArray: any[];
+};
+
+export function useFetch(
+  URL: string,
+  body?: any,
+  options?: Options
+): ResponseType {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   async function getData() {
+    setIsLoading(true);
     try {
       const data = await (await fetch(URL)).json();
       setData(data);
@@ -23,6 +32,7 @@ export function useFetch(URL: string, body?: any): ResponseType {
   }
 
   async function postData() {
+    setIsLoading(true);
     try {
       const data = await (
         await fetch(URL, {
@@ -44,7 +54,7 @@ export function useFetch(URL: string, body?: any): ResponseType {
   useEffect(() => {
     if (body) postData();
     else getData();
-  }, []);
+  }, [...(options?.dependacyArray || [])]);
 
   return { data, isLoading, error };
 }

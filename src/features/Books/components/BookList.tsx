@@ -4,11 +4,11 @@ import { RootState } from "../../../app/store";
 import Book from "../components/Book";
 import "../book.css";
 import { filterBooks } from "../services/filterBook";
-import { IBook } from "../type";
+import { BookType } from "../types";
 
 interface IProps {
   title: string;
-  books: IBook[];
+  books: BookType[];
 }
 
 const BookList: React.FC<IProps> = ({ title, books }) => {

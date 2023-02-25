@@ -1,32 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RootState } from "../../../app/store";
 import { useFetch } from "../../../hooks/useFetch";
-import { setToggleWishlist } from "../bookSlice";
-import { IBook } from "../type";
+import { setWishList } from "../bookSlice";
+import { BookType } from "../types";
 
 const DetailedBook: React.FC = () => {
-  const wishListToggle = useSelector(
-    (state: RootState) => state.book.wishListToggle
-  );
+  const wishListBooks = useSelector((state: RootState) => state.books.wishList);
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const URL = `https://www.googleapis.com/books/v1/volumes/${id}`;
 
   const { data, isLoading } = useFetch(URL);
-  const book: IBook = data;
+  const book: BookType = data;
 
   const authors: string[] = book?.volumeInfo?.authors || [];
   const categories: string[] = book?.volumeInfo?.categories || [];
-
-  const [wishListBooks, setWishList] = useState<IBook[]>([]);
-
-  useEffect(() => {
-    const data: IBook[] = JSON.parse(localStorage.getItem("wishlist") || "[]");
-    setWishList(data);
-  }, [wishListToggle]);
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -43,8 +34,7 @@ const DetailedBook: React.FC = () => {
         (wishListBook) => wishListBook.id !== book?.id
       );
     }
-    localStorage.setItem("wishlist", JSON.stringify(updatedList));
-    dispatch(setToggleWishlist());
+    dispatch(setWishList(updatedList));
   }
 
   return (

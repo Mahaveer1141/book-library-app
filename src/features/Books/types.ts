@@ -1,4 +1,4 @@
-export interface IBook {
+export type BookType = {
   id: string;
   volumeInfo: {
     title: string;
@@ -17,4 +17,4 @@ export interface IBook {
     ratingsCount?: number;
   };
   [key: string]: any;
-}
+};
