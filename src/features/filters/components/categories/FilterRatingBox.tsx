@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../app/store";
-import { setRating } from "../filterSlice";
+import { RootState } from "../../../../app/store";
+import { setRating } from "../../filterSlice";
 import CheckboxInput from "../inputs/CheckboxInput";
 
 const FilterRatingBox: React.FC = () => {

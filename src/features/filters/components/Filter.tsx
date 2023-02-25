@@ -1,12 +1,12 @@
 import React from "react";
 
-import "./filter.css";
-import FilterSearchBox from "./components/categories/FilterSearchBox";
-import FilterRatingBox from "./components/categories/FilterRatingBox";
-import FilterSortByBox from "./components/categories/FilterSortByBox";
-import FilterPublishDate from "./components/categories/FilterPublishDate";
+import "../filter.css";
+import FilterSearchBox from "./categories/FilterSearchBox";
+import FilterRatingBox from "./categories/FilterRatingBox";
+import FilterSortByBox from "./categories/FilterSortByBox";
+import FilterPublishDate from "./categories/FilterPublishDate";
 import { useDispatch } from "react-redux";
-import { clearFilter } from "./filterSlice";
+import { clearFilter } from "../filterSlice";
 
 const Filter: React.FC = () => {
   const dispatch = useDispatch();

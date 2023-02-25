@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
-import Book from "./components/Book";
+import { RootState } from "../../../app/store";
+import Book from "../components/Book";
 import "./book.css";
-import { filterBooks } from "./services/filterBook";
-import { IBook } from "./type";
+import { filterBooks } from "../services/filterBook";
+import { IBook } from "../type";
 
 interface IProps {
   title: string;
   books: IBook[];
 }
 
-const Books: React.FC<IProps> = ({ title, books }) => {
+const BookList: React.FC<IProps> = ({ title, books }) => {
   const filters = useSelector((state: RootState) => state.filter);
   const filteredBooks = filterBooks(books, filters);
   const [wishListToggle, setWishListToggle] = useState(false);
@@ -39,4 +39,4 @@ const Books: React.FC<IProps> = ({ title, books }) => {
   );
 };
 
-export default Books;
+export default BookList;

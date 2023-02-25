@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../app/store";
-import { setPublishedDate } from "../filterSlice";
+import { RootState } from "../../../../app/store";
+import { setPublishedDate } from "../../filterSlice";
 
 const FilterPublishDate: React.FC = () => {
   const publishDateValues = useSelector(

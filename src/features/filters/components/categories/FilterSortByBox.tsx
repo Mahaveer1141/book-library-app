@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../app/store";
-import { setSortBy } from "../filterSlice";
+import { RootState } from "../../../../app/store";
+import { setSortBy } from "../../filterSlice";
 import RadioSelectInput from "../inputs/RadioSelectInput";
 
 const FilterSortByBox: React.FC = () => {

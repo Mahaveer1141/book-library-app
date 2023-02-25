@@ -1,5 +1,5 @@
 import React from "react";
-import { showBookTitle } from "./utils";
+import { showBookTitle } from "../utils";
 
 const Book: React.FC = () => {
   return (

@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { IBook } from "./type";
-import { showBookTitle } from "./utils";
+import { IBook } from "../type";
+import { showBookTitle } from "../utils";
 
 interface IProps {
   book: IBook;
-  changeFlag?: () => void;
-  flag?: boolean;
+  wishListToggle: boolean;
+  setWishListToggle: () => void;
 }
 
-const Book: React.FC<IProps> = ({ book, changeFlag, flag }) => {
+const Book: React.FC<IProps> = ({
+  book,
+  wishListToggle,
+  setWishListToggle,
+}) => {
   const [wishListBooks, setWishListBooks] = useState<IBook[]>([]);
 
   useEffect(() => {
     const data: IBook[] = JSON.parse(localStorage.getItem("wishlist") || "[]");
     setWishListBooks(data);
-  }, [flag]);
+  }, [wishListToggle]);
 
   const containBook = wishListBooks.some(
     (wishListBook) => wishListBook.id === book.id
@@ -29,9 +33,7 @@ const Book: React.FC<IProps> = ({ book, changeFlag, flag }) => {
       updatedList = wishListBooks.filter((wb) => wb.id !== book.id);
     }
     localStorage.setItem("wishlist", JSON.stringify(updatedList));
-    if (changeFlag) {
-      changeFlag();
-    }
+    setWishListToggle();
   }
 
   return (

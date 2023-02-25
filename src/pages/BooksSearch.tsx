@@ -3,11 +3,10 @@ import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { RootState } from "../app/store";
 import Books from "../features/books";
-import { filterUrl } from "../features/books/filterUrl";
+import { filterUrl } from "../features/books/services/filterUrl";
 import { IBook } from "../features/books/type";
 
 const BooksSearch: React.FC = () => {
-  const [flag, setFlag] = useState(false);
   const [isLoading, setLoading] = useState(false);
 
   const categoryFilter = useSelector(
@@ -43,12 +42,7 @@ const BooksSearch: React.FC = () => {
 
   return (
     <>
-      <Books
-        title="Results"
-        books={books}
-        flag={flag}
-        changeFlag={() => setFlag(!flag)}
-      />
+      <Books title="Results" books={books} />
     </>
   );
 };

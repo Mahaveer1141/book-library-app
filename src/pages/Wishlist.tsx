@@ -1,28 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Books from "../features/books";
 import { IBook } from "../features/books/type";
+import BookList from "../features/books/components/BookList";
 
-const Wishlist: React.FC = () => {
-  const [wishListBooks, setWishListBooks] = useState<IBook[]>([]);
-  const [flag, setFlag] = useState(false);
-
+const WishlistRoute: React.FC = () => {
+  const [books, setBooks] = useState<IBook[]>([]);
   useEffect(() => {
-    const data: IBook[] = JSON.parse(localStorage.getItem("wishlist") || "[]");
-    setWishListBooks(data);
-  }, [flag]);
-
+    const wishtListBooks = JSON.parse(localStorage.getItem("wishlist") || "[]");
+    setBooks(wishtListBooks);
+  }, []);
   return (
     <>
-      <Books
-        title="My Wishilist"
-        books={wishListBooks}
-        changeFlag={() => {
-          setFlag((prev) => !prev);
-        }}
-        flag={flag}
-      />
+      <BookList title="Wishlist" books={books} />
     </>
   );
 };
 
-export default Wishlist;
+export default WishlistRoute;

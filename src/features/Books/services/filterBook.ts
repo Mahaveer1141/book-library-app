@@ -1,4 +1,4 @@
-import { IBook } from "./type";
+import { IBook } from "../type";
 
 interface FilterType {
   sortBy: {
