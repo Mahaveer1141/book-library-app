@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { RootState } from "../../../app/store";
+import { setToggleWishlist } from "../bookSlice";
 import { IBook } from "../type";
 import { showBookTitle } from "../utils";
 
 interface IProps {
   book: IBook;
-  wishListToggle: boolean;
-  setWishListToggle: () => void;
 }
 
-const Book: React.FC<IProps> = ({
-  book,
-  wishListToggle,
-  setWishListToggle,
-}) => {
+const Book: React.FC<IProps> = ({ book }) => {
   const [wishListBooks, setWishListBooks] = useState<IBook[]>([]);
+
+  const wishListToggle = useSelector(
+    (state: RootState) => state.book.wishListToggle
+  );
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const data: IBook[] = JSON.parse(localStorage.getItem("wishlist") || "[]");
@@ -33,7 +36,7 @@ const Book: React.FC<IProps> = ({
       updatedList = wishListBooks.filter((wb) => wb.id !== book.id);
     }
     localStorage.setItem("wishlist", JSON.stringify(updatedList));
-    setWishListToggle();
+    dispatch(setToggleWishlist());
   }
 
   return (

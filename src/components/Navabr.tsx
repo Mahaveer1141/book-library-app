@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "../features/search";
+import { Search } from "../features/search";
 
 const Navbar: React.FC = () => {
   return (

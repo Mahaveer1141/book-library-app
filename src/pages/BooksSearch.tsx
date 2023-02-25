@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { RootState } from "../app/store";
-import Books from "../features/books";
+import { BookList } from "../features/books";
 import { filterUrl } from "../features/books/services/filterUrl";
 import { IBook } from "../features/books/type";
 
@@ -42,7 +42,7 @@ const BooksSearch: React.FC = () => {
 
   return (
     <>
-      <Books title="Results" books={books} />
+      <BookList title="Results" books={books} />
     </>
   );
 };

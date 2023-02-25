@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navabr";
-import Filter from "../features/filters";
+import { Filter } from "../features/filters";
 
 const App: React.FC = () => {
   return (

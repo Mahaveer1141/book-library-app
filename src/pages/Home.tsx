@@ -1,5 +1,5 @@
 import React from "react";
-import Books from "../features/books";
+import { BookList } from "../features/books";
 import { useFetch } from "../hooks/useFetch";
 
 const Home: React.FC = () => {
@@ -11,7 +11,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Books title="For You" books={data.items} />
+      <BookList title="For You" books={data.items} />
     </>
   );
 };
